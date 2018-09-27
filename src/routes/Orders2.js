@@ -57,17 +57,15 @@ const pagination = {
 class Orders2 extends React.Component {
   constructor(props) {
     super(props);
-    state:{
-      list:[1,2]
-    }
+
   }
 
-
   render() {
+    console.log(this.props.order.list);
     return (
       <div>
         <SearchBar/>
-        <Table columns={columns} dataSource={data} pagination={pagination}/>
+        <Table columns={columns} dataSource={this.props.order.list} pagination={pagination}/>
         <hr/>
         <hr/>
         {this.props.list}
@@ -77,8 +75,8 @@ class Orders2 extends React.Component {
 }
 
 
-function mapStateToProps(state) {
-  return {list: state.list};
-}
+// function mapStateToProps(state) {
+//   return {list: state.list};
+// }
 
-export default connect(mapStateToProps)(Orders2);
+export default connect(({order})=>({order}))(Orders2);

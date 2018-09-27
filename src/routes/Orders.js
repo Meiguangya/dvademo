@@ -56,19 +56,20 @@ const pagination={
 };
 
 
-function Order({dispatch,order}){
+function Order({dispatch,list,pageObj}){
   //const data = {orders}
-  const orderdata = {order:order.list};
-  if({order}){
+  const orderdata = {list};
+  console.log(orderdata);
+  /*if({order}){
     alert('true');
-    console.log({order});
-    console.log({order:order.list});
+    //console.log({order});
+    //console.log({order:order.list});
     alert(orderdata.length);
-  }
+  }*/
   return(
     <div>
       <SearchBar/>
-      <Table columns={columns} dataSource={data} pagination={pagination} />
+      <Table columns={columns} dataSource={list} pagination={pagination} />
       <hr/>
     </div>
   )
@@ -80,5 +81,10 @@ function Order({dispatch,order}){
 }*/
 
 export default connect(
-  ({order})=>({order}),
+  ({order})=>{
+    return {
+      list:order.list,
+      pageObj:order.pageObj
+    };
+  }
 ) (Order);
