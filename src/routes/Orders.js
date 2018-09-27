@@ -60,6 +60,7 @@ function Order({dispatch,list,pageObj}){
   //const data = {orders}
   const orderdata = {list};
   console.log(orderdata);
+  console.log(pageObj);
   /*if({order}){
     alert('true');
     //console.log({order});
@@ -71,6 +72,7 @@ function Order({dispatch,list,pageObj}){
       <SearchBar/>
       <Table columns={columns} dataSource={list} pagination={pagination} />
       <hr/>
+      {pageObj}
     </div>
   )
 
