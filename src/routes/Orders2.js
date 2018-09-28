@@ -57,21 +57,66 @@ const data = [{
 class Orders2 extends React.Component {
   constructor(props) {
     super(props);
+    this.chan=this.chan.bind(this);
     //this.changepage=this.changepage.bind(this);
-    this.change=this.change.bind(this);
+    this.state = {
+      pagination: {
+        total: this.props.order2.pageInfo.total,
+        pageSize: this.props.order2.pageInfo.pageSize,
+        defaultPageSize: 2,
+        pageNum: this.props.order2.pageInfo.pageNum,
+        current: this.pageNum,
+        onChange(current) {
+
+          //alert(current);
+          //this.changepage;
+          //this.props.dispatch({type:'changePage'});
+          //console.log(this.props);
+          //this.sayhi();
+        },
+        showTotal: () => {
+          return '共' + this.props.order2.pageInfo.total + '条数据';
+        },
+        sayhi: () => {
+          alert('hi');
+
+          console.log(this.props.order2.pageInfo.total);
+          console.log(this.props.dispatch);
+          this.props.dispatch({type: 'order2/ordChangePage', pageNum: 2});
+          this.total = this.props.order2.pageInfo.total;
+          this.pageSize = this.props.order2.pageInfo.pageSize;
+          this.pageNum = this.props.order2.pageInfo.pageNum;
+          this.current = this.pageNum;
+          console.log('dfasdfasdfasd');
+          console.log(this.pageNum);
+        }
+      },
+    }
   }
 
-  change(){
-    alert('change');
+  chan(page){
+    console.log(page);
+    this.props.dispatch({type: 'order2/ordChangePage', pageNum: page.current});
+    const pagination=this.state.pagination;
+    pagination.total=this.props.order2.pageInfo.total;
+    pagination.pageSize=this.props.order2.pageInfo.pageSize;
+    pagination.pageNum=this.props.order2.pageInfo.pageNum;
+    pagination.current=this.props.order2.pageInfo.pageNum;
+    console.log(pagination);
+    this.setState({
+      pagination:pagination
+    });
+    alert(page);
   }
 
   render() {
     console.log(this.props.order2.pageInfo);
-    const pagination = {
+    /*let pagination = {
       total: this.props.order2.pageInfo.total,
       pageSize: this.props.order2.pageInfo.pageSize,
       defaultPageSize: 2,
-      that:222,
+      pageNum:this.props.order2.pageInfo.pageNum,
+      current:this.pageNum,
       onChange(current) {
 
         //alert(current);
@@ -89,13 +134,22 @@ class Orders2 extends React.Component {
         console.log(this.props.order2.pageInfo.total);
         console.log(this.props.dispatch);
         this.props.dispatch({type:'order2/ordChangePage',pageNum:2});
+        this.total=this.props.order2.pageInfo.total;
+        this.pageSize=this.props.order2.pageInfo.pageSize;
+        this.pageNum=this.props.order2.pageInfo.pageNum;
+        this.current=this.pageNum;
+        console.log('dfasdfasdfasd');
+        console.log(this.pageNum);
       }
-    };
+    };*/
     return (
       <div>
         <h2>order page2</h2>
         <SearchBar/>
-        <Table columns={columns} dataSource={this.props.order2.pageInfo.data} pagination={pagination}/>
+        <Table columns={columns}
+               dataSource={this.props.order2.pageInfo.data}
+               pagination={this.state.pagination}
+        onChange={this.chan}/>
         <hr/>
         <hr/>
         {this.props.list}

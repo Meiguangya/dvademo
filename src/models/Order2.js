@@ -37,9 +37,8 @@ export default {
         pageSize:2,
         defaultPageSize:2,
         pageNum: payload.pageNum
-      }
+      };
       const pageInfo = yield call(orderservice.getOrderData,{payload:page});
-      console.log(pageInfo);
       yield put({type:'changePage',payload:pageInfo})
     }
   },
@@ -52,8 +51,9 @@ export default {
     },
     changePage(state,{payload:pageInfo}){
       alert('change...');
-      console.log('change...');
       state.pageInfo = pageInfo;
+      console.log('changpagedsafasdfasd....');
+      console.log(state.pageInfo);
       return{...state};
     }
   }

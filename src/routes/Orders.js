@@ -55,24 +55,32 @@ const pagination={
   }
 };
 
-
-function Order({dispatch,list,pageObj}){
+function changePage(page){
+  alert('...'+page);
+  console.log(page);
+  this.props.dispatch({
+    type:'ordChangePage',
+    payload:page
+  });
+};
+function Order({dispatch,pageInfo}){
   //const data = {orders}
-  const orderdata = {list};
-  console.log(orderdata);
-  console.log(pageObj);
+  //const orderdata = {list};
+  //console.log(orderdata);
+  //console.log(pageObj);
   /*if({order}){
     alert('true');
     //console.log({order});
     //console.log({order:order.list});
     alert(orderdata.length);
   }*/
+
+
   return(
     <div>
       <SearchBar/>
-      <Table columns={columns} dataSource={list} pagination={pagination} />
+      <Table columns={columns} dataSource={pageInfo.data} pagination={pagination} onChange={changePage.bind(this)} />
       <hr/>
-      {pageObj}
     </div>
   )
 
@@ -83,10 +91,9 @@ function Order({dispatch,list,pageObj}){
 }*/
 
 export default connect(
-  ({order})=>{
+  ({order2})=>{
     return {
-      list:order.list,
-      pageObj:order.pageObj
+      pageInfo:order2.pageInfo
     };
   }
 ) (Order);
