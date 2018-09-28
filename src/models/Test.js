@@ -3,6 +3,7 @@ export default {
   state: {
     name:null,
     price:null,
+    en_name:null,
   },
 
   subscriptions: {
@@ -13,7 +14,8 @@ export default {
             type:'showapple',
             payload:{
               name:'苹果',
-              price:10.0
+              price:10.0,
+              en_name:'apple'
             }
           });
         }
@@ -33,6 +35,15 @@ export default {
         type:'getapple',
         payload:{name:'香蕉',price:20}
       });
+    },
+    *changeprice({payload},{call,put}){
+      alert('cccccc');
+      console.log(payload);
+      const newPrice = 30;
+      yield put({
+        type:'changePrice',
+        payload:newPrice
+      })
     }
   },
 
@@ -43,8 +54,12 @@ export default {
     getapple(state,action){
       console.log('getapple');
       console.log(action.payload);
-
       return {...state,...action.payload};
+    },
+    changePrice(state,action){
+      console.log(action.payload);
+      state.price=action.payload;
+      return{...state,...action.payload};
     }
   },
 }

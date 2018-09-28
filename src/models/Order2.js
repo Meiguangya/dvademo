@@ -12,8 +12,12 @@ export default {
   },
   subscriptions:{
     setup({ dispatch, history }) {
-      alert('setup2..');
-      dispatch({type:'fetch'});
+      history.listen(()=>{
+        if(history.location==='/order2'){
+          dispatch({type:'fetch'});
+        }
+      });
+
     },
   },
   effects:{

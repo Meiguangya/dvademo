@@ -4,28 +4,42 @@ import {connect} from 'dva';
 
 //无状态函数式组件
 //只负责根据传入的props来展示
-const Test = (props) => {
+const Test = ({dispatch,test2}) => {
 
+  /*function changp(num1,num2){
+    alert('test2/changp');
+    dispatch({
+      type:'test2/changeprice',
+      payload:{num1,num2}
+    });
+  }*/
 
   const apple = {
-    name:props.test2.name,
-    price:10,
+    name:test2.name,
+    price:test2.price,
     sayPrice(){
-      console.log(props);
-
-      alert('sss');
-    }
+      alert('sayPrice');
+    },
+    onPriceChange(num,num2){
+      console.log(test2);
+      dispatch({
+        type:'test2/changeprice',
+        payload:{num,num2}
+      });
+      //alert('onPriceChange..');
+      //changp(num,num2);
+    },
   };
 
   return (
-    <div>
+    <div onClick={this.sayPrice}>
       Test!!
       <hr/>
       <hr/>
       <Apple {...apple}/>
     </div>
   );
-}
+};
 
 export default connect(
   ({test2})=>({test2})

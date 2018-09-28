@@ -12,6 +12,7 @@ const app = dva();
 //app.model(require('./models/Order').default);
 app.model(require('./models/Order2').default);
 app.model(require('./models/Test').default);
+app.model(require('./models/EventOrder').default);
 
 // 4. Router
 app.router(require('./router').default);
