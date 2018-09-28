@@ -1,7 +1,8 @@
 import React from 'react';
-import SearchBar from '../components/SearchBar'
+import SearchBar from '../components/SearchBar';
 import {Table} from 'antd';
 import {connect} from 'dva';
+import OrderList from '../components/OrderList';
 
 const columns = [{
   title: '序号',
@@ -146,13 +147,13 @@ class Orders2 extends React.Component {
       <div>
         <h2>order page2</h2>
         <SearchBar/>
-        <Table columns={columns}
+        {/*<Table columns={columns}
                dataSource={this.props.order2.pageInfo.data}
                pagination={this.state.pagination}
-        onChange={this.chan}/>
+        onChange={this.chan}/>*/}
         <hr/>
         <hr/>
-        {this.props.list}
+        <OrderList/>
       </div>
     )
   };

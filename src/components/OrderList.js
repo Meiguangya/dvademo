@@ -1,13 +1,15 @@
 import React from 'react';
-import { Table, Pagination} from 'antd';
+import {Table, Pagination} from 'antd';
 
 
-class OrderList extends React.Component{
+class OrderList extends React.Component {
 
-  constructor(props){
+  constructor(props) {
     super(props);
+  }
 
-    this.columns = [
+  render() {
+    const columns = [
       {
         title: '序号',
         dataIndex: 'id',
@@ -26,13 +28,14 @@ class OrderList extends React.Component{
         dataIndex: 'commitTime',
       }
     ];
-  }
+    return (
+      <div>
+        <Table dataSource={[]} columns={columns}/>
+      </div>
 
-  render(){
-    return(
-      <Table dataSource={} columns={this.columns}/>
     );
   }
 
-
 }
+
+export default OrderList;
