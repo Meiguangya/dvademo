@@ -23,7 +23,7 @@ const OrderTable=({props})=>{
 
   return(
     <Table columns={columns} dataSource={props.data} pagination={props.pagination}
-           onChange={props.onChange}/>
+           onChange={props.onChange} rowKey={record=>record.id}/>
   )
 }
 export default OrderTable;

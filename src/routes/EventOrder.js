@@ -8,8 +8,12 @@ const EventOrder=({dispatch,eventorder})=>{
     data:eventorder.data,
     pagination:eventorder.pagination,
     onChange(page){
-      alert(page.current);
+      //alert(page.current);
       console.log(page);
+      dispatch({
+        type:'eventorder/queryByPage',
+        payload:page
+      })
     }
   };
 
@@ -25,7 +29,7 @@ const EventOrder=({dispatch,eventorder})=>{
     </React.Fragment>
 
   );
-}
+};
 export default connect(
   ({eventorder})=>({eventorder})
 ) (EventOrder);

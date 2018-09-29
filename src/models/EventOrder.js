@@ -1,4 +1,4 @@
-
+import * as eventorderservice from '../services/eventOrderService';
 
 export default {
   namespace: 'eventorder',
@@ -28,20 +28,40 @@ export default {
   effects: {
     *fetch({ payload }, { call, put }) {  // eslint-disable-line
       //console.log(payload);
-
+      //alert('yong service');
+      const result =  yield call(eventorderservice.query,{payload:{
+        data:[],
+        pagination:{
+          current:1,
+          hideOnSinglePage:true,
+          pageSize:4,
+          total:0,
+        },
+        }});
+      console.log("aaaaaaaaaaaaaaa");
+      console.log(result);
       yield put({
         type: 'save',
-        payload:{
-          data:[1],
-          pagination:{
-            current:2,
-            hideOnSinglePage:true,
-            pageSize:4,
-            total:6,
-          },
-        }
+        payload:result
       });
     },
+    *queryByPage({payload},{call,put}){
+      console.log('query by page..');
+      console.log(payload);
+
+      const result = yield call(eventorderservice.query,{payload:{
+        pagination:{
+            current:payload.current,
+            hideOnSinglePage:payload.hideOnSinglePage,
+            pageSize:payload.pageSize,
+            total:payload.total,
+          },}});
+
+      yield put({
+        type:'save',
+        payload:result
+      });
+    }
   },
 
   reducers: {
