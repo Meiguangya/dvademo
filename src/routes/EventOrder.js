@@ -1,6 +1,7 @@
 import React from 'react';
 import OrderTable from '../components/eventorder/OrderTable'
 import {connect} from 'dva';
+import TablePage from '../components/eventorder/TablePage';
 
 const EventOrder=({dispatch,eventorder})=>{
 
@@ -26,6 +27,10 @@ const EventOrder=({dispatch,eventorder})=>{
         <hr/>
         <OrderTable props={orderTable}/>
       </div>
+
+      <hr/>
+      <hr/>
+      <TablePage/>
     </React.Fragment>
 
   );

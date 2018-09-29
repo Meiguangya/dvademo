@@ -5,6 +5,7 @@ import Order from './routes/Orders';
 import Order2 from './routes/Orders2';
 import Test from './routes/Test';
 import EventOrder from './routes/EventOrder';
+import OtherRecord from './routes/OtherRecord';
 
 
 function RouterConfig({ history }) {
@@ -16,6 +17,8 @@ function RouterConfig({ history }) {
         <Route path="/order2" exact component={Order2} />
         <Route path="/test" exact component={Test} />
         <Route path="/eventorder" exact component={EventOrder} />
+        <Route path="/other/record" exact component={OtherRecord} />
+
       </Switch>
     </Router>
   );

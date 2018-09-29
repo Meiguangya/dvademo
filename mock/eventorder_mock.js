@@ -10,7 +10,7 @@ Random.extend({
   // constellation: function(date){
   //     return this.pick(this.eventTypes)
   // }
-})
+});
 let db=Mock.mock({
   'data|15-20':[{
     'id|+1': 1,
@@ -25,8 +25,7 @@ let db=Mock.mock({
 });
 module.exports={
   [`POST /api/events`](req,res){
-    //eval('(' + jsonstr + ')')
-    //const params = eval('(' + req.body + ')');
+
     const params = req.body;
 
     //当前页
@@ -39,7 +38,7 @@ module.exports={
     //开始索引
     const begin = (current-1)*pageSize;
     //结束索引
-    const end = ((begin+pageSize+1)>(total))?(total-1):(begin+pageSize);
+    const end = ((begin+pageSize+1)>(total))?(total):(begin+pageSize);
 
 
     const result={
@@ -54,11 +53,11 @@ module.exports={
     res.status(200).json(result);
   },
 
-  [`POST /api/remove`](req,res) {
+  /*[`POST /api/remove`](req,res) {
     let t=req.body;
     console.log(`后台删除${t.id}`)
     let data = db.data.filter( e => e.id !== t.id )
     db.data = data;
     res.status(200).json(db);
-  }
+  }*/
 };
